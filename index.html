@@ -1,305 +1,157 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfolio Teletext CRT</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        teletext: ['Mode7GX3', 'monospace'],
-                    },
-                    colors: {
-                        teletext: {
-                            black: '#000000',
-                            red: '#FF0000',
-                            green: '#00FF00',
-                            yellow: '#FFFF00',
-                            blue: '#0000FF',
-                            magenta: '#FF00FF',
-                            cyan: '#00FFFF',
-                            white: '#FFFFFF',
-                            'transparent-black': 'rgba(0, 0, 0, 0.5)',
-                            'transparent-red': 'rgba(255, 0, 0, 0.5)',
-                            'transparent-green': 'rgba(0, 255, 0, 0.5)',
-                            'transparent-yellow': 'rgba(255, 255, 0, 0.5)',
-                            'transparent-blue': 'rgba(0, 0, 255, 0.5)',
-                            'transparent-magenta': 'rgba(255, 0, 255, 0.5)',
-                            'transparent-cyan': 'rgba(0, 255, 255, 0.5)',
-                            'transparent-white': 'rgba(255, 255, 255, 0.5)',
-                        },
-                    },
-                },
-            },
-        }
-    </script>
-    <style>
-        @font-face {
-            font-family: 'Mode7GX3';
-            src: url('./MODE7GX3.TTF') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-            font-display: swap;
-        }
+  </head>
+  <body>
+    <div class="crt-container">
+      <div class="screen">
+        <div class="screen-content">
+          <div class="header-bar text-white bg-black">
+            <span class="tracking-wide">
+              <span id="page-input"></span>
+              <span id="current-page" class="flex-shrink-0"></span>
+            </span>
+            <span class="font-bold">v0.0.1</span>
+            <span id="time" class="font-bold"></span>
+          </div>
+          <div class="title-bar bg-blue text-white">
+            <h1 class="title-text">JOSEP'S PORTFOLIO</h1>
+          </div>
 
-        .screen-lines::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(
-                rgba(18, 16, 16, 0) 50%,
-                rgba(0, 0, 0, 0.25) 50%
-            );
-            background-size: 100% 4px;
-            pointer-events: none;
-            z-index: 20;
-        }
+          <div class="menu-section">
+            <div class="menu-column bg-red text-white">
+              <div class="menu-item">
+                <span>ABOUT ME</span>
 
-        .screen-glow::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(
-                90deg,
-                rgba(255,0,0,0.06),
-                rgba(0,255,0,0.02),
-                rgba(0,0,255,0.06)
-            );
-            z-index: 10;
-            pointer-events: none;
-        }
-    </style>
-</head>
-<body class="bg-gray-900 min-h-screen flex flex-col justify-center items-center p-5 font-teletext text-teletext-white">
-    <div class="relative w-[90vmin] aspect-[4/3] bg-gray-800 rounded-3xl p-10 shadow-[0_0_0_10px_#1a1a1a,inset_0_0_100px_rgba(0,0,0,0.5)] mb-5">
-        <div class="absolute inset-0 bg-gradient-to-br from-teletext-transparent-white via-teletext-transparent-white to-transparent rounded-3xl pointer-events-none"></div>
-        <div class="absolute bottom-4 right-4 w-2.5 h-2.5 bg-teletext-red rounded-full shadow-[0_0_10px_#ff3300]"></div>
-        <div class="bg-teletext-black h-full w-full relative overflow-hidden screen-lines screen-glow">
-            <div class="relative z-30 p-2 h-full box-border flex flex-col">
-                <div class="text-teletext-white flex justify-between px-5 py-0.5 text-sm">
-                    <span class="tracking-widest">
-                        <span id="page-input"></span>
-                        <span id="current-page" class="flex-shrink-0"></span>
-                    </span>
-                    <span class="font-bold">v0.0.1</span>
-                    <span id="time" class="font-bold"></span>
-                </div>
-                <div class="bg-teletext-blue py-2.5 text-center relative mb-2">
-                    <h1 class="text-teletext-yellow text-4xl m-0">JOSEP'S PORTFOLIO</h1>
-                </div>
+                <span>110</span>
+              </div>
+              <div class="menu-item">
+                <span>SKILLS</span>
 
-                <div class="flex flex-grow mb-2">
-                    <div class="bg-teletext-red p-2 flex-1">
-                        <div class="flex justify-between items-center">
-                            <span class="text-teletext-white">ABOUT ME</span>
-                            <span class="border-b-2 border-dotted border-opacity-50 mx-2 flex-grow"></span>
-                            <span class="text-teletext-white flex-shrink-0">110</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-teletext-white">SKILLS</span>
-                            <span class="border-b-2 border-dotted border-opacity-50 mx-2 flex-grow"></span>
-                            <span class="text-teletext-white flex-shrink-0">120</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-teletext-white">EXPERIENCE</span>
-                            <span class="border-b-2 border-dotted border-opacity-50 mx-2 flex-grow"></span>
-                            <span class="text-teletext-white flex-shrink-0">130</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-teletext-white">EDUCATION</span>
-                            <span class="border-b-2 border-dotted border-opacity-50 mx-2 flex-grow"></span>
-                            <span class="text-teletext-white flex-shrink-0">140</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-teletext-white">ACHIEVEMENTS</span>
-                            <span class="border-b-2 border-dotted border-opacity-50 mx-2 flex-grow"></span>
-                            <span class="text-teletext-white flex-shrink-0">150</span>
-                        </div>
-                    </div>
-                    <div class="bg-teletext-green p-2 flex-1">
-                        <div class="flex justify-between items-center">
-                            <span class="text-teletext-blue">PROJECTS</span>
-                            <span class="border-b-2 border-dotted border-teletext-blue border-opacity-50 mx-2 flex-grow"></span>
-                            <span class="text-teletext-blue flex-shrink-0">210</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-teletext-blue">GITHUB REPOS</span>
-                            <span class="border-b-2 border-dotted border-teletext-blue border-opacity-50 mx-2 flex-grow"></span>
-                            <span class="text-teletext-blue flex-shrink-0">220</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-teletext-blue">TECH STACK</span>
-                            <span class="border-b-2 border-dotted border-teletext-blue border-opacity-50 mx-2 flex-grow"></span>
-                            <span class="text-teletext-blue flex-shrink-0">230</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-teletext-blue">CASE STUDIES</span>
-                            <span class="border-b-2 border-dotted border-teletext-blue border-opacity-50 mx-2 flex-grow"></span>
-                            <span class="text-teletext-blue flex-shrink-0">240</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-teletext-blue">OPEN SOURCE</span>
-                            <span class="border-b-2 border-dotted border-teletext-blue border-opacity-50 mx-2 flex-grow"></span>
-                            <span class="text-teletext-blue flex-shrink-0">250</span>
-                        </div>
-                    </div>
-                </div>
+                <span>120</span>
+              </div>
+              <div class="menu-item">
+                <span>EXPERIENCE</span>
 
-                <div class="bg-teletext-blue py-1 px-2 relative mb-2">
-                    <div class="flex justify-between items-center">
-                        <span class="text-teletext-white">HOME PAGE</span>
-                        <span class="border-b-2 border-dotted border-opacity-50 mx-2 flex-grow"></span>
-                        <span class="text-teletext-yellow flex-shrink-0">100</span>
-                    </div>
-                </div>
+                <span>130</span>
+              </div>
+              <div class="menu-item">
+                <span>EDUCATION</span>
 
-                <div class="flex flex-grow mb-2">
-                    <div class="bg-teletext-yellow p-2 flex-1">
-                        <div class="flex justify-between items-center">
-                            <span class="text-teletext-blue">BLOG POSTS</span>
-                            <span class="border-b-2 border-dotted border-teletext-blue border-opacity-50 mx-2 flex-grow"></span>
-                            <span class="text-teletext-blue flex-shrink-0">310</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-teletext-blue">ARTICLES</span>
-                            <span class="border-b-2 border-dotted border-teletext-blue border-opacity-50 mx-2 flex-grow"></span>
-                            <span class="text-teletext-blue flex-shrink-0">320</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-teletext-blue">TUTORIALS</span>
-                            <span class="border-b-2 border-dotted border-teletext-blue border-opacity-50 mx-2 flex-grow"></span>
-                            <span class="text-teletext-blue flex-shrink-0">330</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-teletext-blue">PODCASTS</span>
-                            <span class="border-b-2 border-dotted border-teletext-blue border-opacity-50 mx-2 flex-grow"></span>
-                            <span class="text-teletext-blue flex-shrink-0">340</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-teletext-blue">PRESENTATIONS</span>
-                            <span class="border-b-2 border-dotted border-teletext-blue border-opacity-50 mx-2 flex-grow"></span>
-                            <span class="text-teletext-blue flex-shrink-0">350</span>
-                        </div>
-                    </div>
-                    <div class="bg-teletext-cyan p-2 flex-1">
-                        <div class="flex justify-between items-center">
-                            <span class="text-teletext-blue">CONTACT</span>
-                            <span class="border-b-2 border-dotted border-teletext-blue border-opacity-50 mx-2 flex-grow"></span>
-                            <span class="text-teletext-blue flex-shrink-0">410</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-teletext-blue">SOCIAL MEDIA</span>
-                            <span class="border-b-2 border-dotted border-teletext-blue border-opacity-50 mx-2 flex-grow"></span>
-                            <span class="text-teletext-blue flex-shrink-0">420</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-teletext-blue">RESUME</span>
-                            <span class="border-b-2 border-dotted border-teletext-blue border-opacity-50 mx-2 flex-grow"></span>
-                            <span class="text-teletext-blue flex-shrink-0">430</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-teletext-blue">TESTIMONIALS</span>
-                            <span class="border-b-2 border-dotted border-teletext-blue border-opacity-50 mx-2 flex-grow"></span>
-                            <span class="text-teletext-blue flex-shrink-0">440</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-teletext-blue">HIRE ME</span>
-                            <span class="border-b-2 border-dotted border-teletext-blue border-opacity-50 mx-2 flex-grow"></span>
-                            <span class="text-teletext-blue flex-shrink-0">450</span>
-                        </div>
-                    </div>
-                </div>
+                <span>140</span>
+              </div>
+              <div class="menu-item">
+                <span>ACHIEVEMENTS</span>
 
-                <div class="bg-teletext-white py-1 px-2 relative">
-                    <div class="flex justify-between items-center">
-                        <span class="text-teletext-red">CONTACT INFO</span>
-                        <span class="border-b-2 border-dotted border-teletext-red border-opacity-50 mx-2 flex-grow"></span>
-                        <span class="text-teletext-red flex-shrink-0">199</span>
-                    </div>
-                </div>
-
-                <div class="flex justify-around text-sm mt-2">
-                    <span class="text-teletext-red">PROFILE</span>
-                    <span class="text-teletext-green">PROJECTS</span>
-                    <span class="text-teletext-yellow">CONTENT</span>
-                    <span class="text-teletext-cyan">CONNECT</span>
-                </div>
+                <span>150</span>
+              </div>
             </div>
+
+            <div class="menu-column bg-green text-blue">
+              <div class="menu-item">
+                <span>PROJECTS</span>
+                <span>210</span>
+              </div>
+              <div class="menu-item">
+                <span>GITHUB REPOS</span>
+                <span>220</span>
+              </div>
+              <div class="menu-item">
+                <span>TECH STACK</span>
+                <span>230</span>
+              </div>
+              <div class="menu-item">
+                <span>CASE STUDIES</span>
+                <span>240</span>
+              </div>
+              <div class="menu-item">
+                <span>OPEN SOURCE</span>
+                <span>250</span>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="menu-column bg-blue text-white"
+            style="margin: 0.5rem 0; flex-grow: 0"
+          >
+            <div class="menu-item">
+              <span>HOME PAGE</span>
+              <span>100</span>
+            </div>
+          </div>
+
+          <div class="menu-section">
+            <div class="menu-column bg-yellow text-blue">
+              <div class="menu-item">
+                <span>BLOG POSTS</span>
+                <span>310</span>
+              </div>
+              <div class="menu-item">
+                <span>ARTICLES</span>
+                <span>320</span>
+              </div>
+              <div class="menu-item">
+                <span>TUTORIALS</span>
+                <span>330</span>
+              </div>
+              <div class="menu-item">
+                <span>PODCASTS</span>
+                <span>340</span>
+              </div>
+              <div class="menu-item">
+                <span>PRESENTATIONS</span>
+                <span>350</span>
+              </div>
+            </div>
+
+            <div class="menu-column bg-cyan text-blue">
+              <div class="menu-item">
+                <span>CONTACT</span>
+                <span>410</span>
+              </div>
+              <div class="menu-item">
+                <span>SOCIAL MEDIA</span>
+                <span>420</span>
+              </div>
+              <div class="menu-item">
+                <span>RESUME</span>
+                <span>430</span>
+              </div>
+              <div class="menu-item">
+                <span>TESTIMONIALS</span>
+                <span>440</span>
+              </div>
+              <div class="menu-item">
+                <span>HIRE ME</span>
+                <span>450</span>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="menu-column bg-white text-red"
+            style="margin: 0.5rem 0; flex-grow: 0"
+          >
+            <div class="menu-item">
+              <span>CONTACT INFO</span>
+              <span>199</span>
+            </div>
+          </div>
+
+          <div class="footer-nav">
+            <span class="text-red">PROFILE</span>
+            <span class="text-green">PROJECTS</span>
+            <span class="text-yellow">CONTENT</span>
+            <span class="text-cyan">CONNECT</span>
+          </div>
         </div>
+      </div>
     </div>
 
-    <script>
-        function updateDateTime() {
-            const now = new Date();
-            const dayDate = now.toLocaleDateString('en-US', {
-                weekday: 'short',
-                month: 'short',
-                day: 'numeric'
-            });
-            const timeStr = now.toLocaleString('en-US', {
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit',
-                hour12: false
-            });
-            document.getElementById('time').textContent = dayDate.toUpperCase() + ' ' + timeStr;
-        }    
-
-        setInterval(updateDateTime, 1000);
-        updateDateTime();
-
-        const pageInput = document.getElementById('page-input');
-        pageInput.textContent = 'P100';
-
-        const currentPage = document.getElementById('current-page');
-        currentPage.textContent = '100';
-        
-        let currentInput = '';
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key >= '0' && e.key <= '9') {
-                currentInput += e.key;
-                updatePageDisplay();
-            }
-        });
-
-        function updatePageDisplay() {
-            switch (currentInput.length) {
-                case 1:
-                    pageInput.textContent = 'P' + currentInput + '--';
-                    break;
-                case 2:
-                    pageInput.textContent = 'P' + currentInput + '-';
-                    break;
-                case 3:
-                    pageInput.textContent = 'P' + currentInput;
-                    break;
-                default:
-                    pageInput.textContent = 'P100';
-            }
-
-            if (currentInput.length === 3) {
-                navigateToPage(currentInput);
-            }
-        }
-
-        function navigateToPage(pageNumber) {
-            // This function is kept for potential future use
-            alert('Page navigation is not implemented in this version.');
-            currentInput = '';
-            setTimeout(() => {
-                pageInput.textContent = 'P100';
-            }, 1000);
-        }
-    </script>
-</body>
+    <script type="module" src="./src/scripts/main.js"></script>
+  </body>
 </html>

@@ -1,0 +1,45 @@
+:root {
+  --black: #000;
+  --red: #f00;
+  --green: #0f0;
+  --yellow: #ff0;
+  --blue: #00f;
+  --magenta: #f0f;
+  --cyan: #0ff;
+  --white: #fff;
+  --transparent-black: rgb(0 0 0 / 50%);
+  --transparent-white: rgb(255 255 255 / 50%);
+}
+
+/* Text color utilities */
+.text-red { color: var(--red); }
+.bg-red { background-color: var(--red); }
+.border-red { border-color: var(--red); }
+
+.text-green { color: var(--green); }
+.bg-green { background-color: var(--green); }
+.border-green { border-color: var(--green); }
+
+.text-yellow { color: var(--yellow); }
+.bg-yellow { background-color: var(--yellow); }
+.border-yellow { border-color: var(--yellow); }
+
+.text-cyan { color: var(--cyan); }
+.bg-cyan { background-color: var(--cyan); }
+.border-cyan { border-color: var(--cyan); }
+
+.text-blue { color: var(--blue); }
+.bg-blue { background-color: var(--blue); }
+.border-blue { border-color: var(--blue); }
+
+.text-white { color: var(--white); }
+.bg-white { background-color: var(--white); }
+.border-white { border-color: var(--white); }
+
+.text-black { color: var(--black); }
+.bg-black { background-color: var(--black); }
+.border-black { border-color: var(--black); }
+
+.text-magenta { color: var(--magenta); }
+.bg-magenta { background-color: var(--magenta); }
+.border-magenta { border-color: var(--magenta); }
