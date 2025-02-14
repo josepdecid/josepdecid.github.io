@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'Mode7GX3';
+  src: url('/MODE7GX3.TTF') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
 :root {
   --black: #000;
   --red: #f00;

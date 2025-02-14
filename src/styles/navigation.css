@@ -1,0 +1,36 @@
+.navigation-menu-section {
+  display: flex;
+  flex-grow: 1;
+}
+
+.navigation-menu-column {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5rem;
+  padding: 0.5rem;
+  flex: 1;
+}
+
+.navigation-menu-item {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navigation-menu-item>span:first-child {
+  position: relative;
+  flex-grow: 1;
+  overflow-x: hidden;
+  margin-right: 0.25rem;
+}
+
+.navigation-menu-item>span:first-child::after {
+  position: absolute;
+  content: '';
+  height: 70%;
+  width: 100%;
+  border-bottom: 2px dotted;
+  margin: 0 0.5rem;
+}

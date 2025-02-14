@@ -1,0 +1,23 @@
+/* CRT Lines effect */
+.screen::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgb(18 16 16 / 0%) 50%, rgb(0 0 0 / 5%) 50%);
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 20;
+}
+
+/* CRT Glow effect */
+.screen::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg,
+      rgb(255 0 0 / 6%),
+      rgb(0 255 0 / 2%),
+      rgb(0 0 255 / 6%));
+  pointer-events: none;
+  z-index: 10;
+}
