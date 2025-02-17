@@ -8,7 +8,7 @@ const pageContent = document.getElementById('page-content');
 const pageNumber = getCurrentPageNumber();
 currentPage.textContent = pageNumber;
 pageInput.textContent = `P${pageNumber}`;
-pageContent.innerHTML = await getCurrentPage(pageNumber);
+replaceCurrentPageContent(pageNumber);
 
 function getCurrentPageNumber() {
   const searchParams = new URLSearchParams(window.location.search);
@@ -21,15 +21,16 @@ function getCurrentPageNumber() {
   return parseInt(pageNumber);
 }
 
-async function getCurrentPage(pageNumber) {
-  const page = await fetch(`/pages/${pageNumber}.html`).then(res => res.text());
-
-  // If the page does not exist it tries to render the main page again. Show 404 instead.
-  if (page.toLowerCase().startsWith('<!doctype html>')) {
-    return await fetch('/pages/_404.html').then(res => res.text());
-  }
-
-  return page;
+function replaceCurrentPageContent(pageNumber) {
+  fetch(`/pages/${pageNumber}.html`).then(res => {
+    res.text().then(contentText => {
+      if (contentText.toLowerCase().startsWith('<!doctype html>')) {
+        replaceCurrentPageContent('_404');
+      } else {
+        pageContent.innerHTML = contentText;
+      }
+    });
+  });
 }
 
 function updateDateTime() {
