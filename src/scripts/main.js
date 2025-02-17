@@ -1,5 +1,37 @@
 import '../styles/main.css';
 
+
+const pageInput = document.getElementById('page-input');
+const currentPage = document.getElementById('current-page');
+const pageContent = document.getElementById('page-content');
+
+const pageNumber = getCurrentPageNumber();
+currentPage.textContent = pageNumber;
+pageInput.textContent = `P${pageNumber}`;
+pageContent.innerHTML = await getCurrentPage(pageNumber);
+
+function getCurrentPageNumber() {
+  const searchParams = new URLSearchParams(window.location.search);
+  const pageNumber = searchParams.get('p');
+
+  if (!pageNumber || pageNumber.length !== 3 || isNaN(parseInt(pageNumber))) {
+    return 100;
+  }
+
+  return parseInt(pageNumber);
+}
+
+async function getCurrentPage(pageNumber) {
+  const page = await fetch(`/pages/${pageNumber}.html`).then(res => res.text());
+
+  // If the page does not exist it tries to render the main page again. Show 404 instead.
+  if (page.toLowerCase().startsWith('<!doctype html>')) {
+    return await fetch('/pages/_404.html').then(res => res.text());
+  }
+
+  return page;
+}
+
 function updateDateTime() {
   const now = new Date();
   const dayDate = now.toLocaleDateString('en-US', {
@@ -19,12 +51,6 @@ function updateDateTime() {
 
 setInterval(updateDateTime, 1000);
 updateDateTime();
-
-const pageInput = document.getElementById('page-input');
-pageInput.textContent = 'P100';
-
-const currentPage = document.getElementById('current-page');
-currentPage.textContent = '100';
 
 let currentInput = '';
 
@@ -56,10 +82,5 @@ function updatePageDisplay() {
 }
 
 function navigateToPage(pageNumber) {
-  // This function is kept for potential future use
-  alert('Page navigation is not implemented in this version.');
-  currentInput = '';
-  setTimeout(() => {
-    pageInput.textContent = 'P100';
-  }, 1000);
+  window.location.href = `?p=${pageNumber}`;
 }
