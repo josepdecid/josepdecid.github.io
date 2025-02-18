@@ -17,9 +17,9 @@ export function navigateToPage(pageCode) {
 function _getCurrentPageCode() {
   const searchParams = new URLSearchParams(window.location.search);
   const rawPageCode = searchParams.get("p");
-  const pageCode = rawPageCode.toUpperCase();
+  const pageCode = Number.parseInt(rawPageCode, 10);
 
-  if (!rawPageCode || rawPageCode.length !== 3 || pageCode.length !== 3) {
+  if (!rawPageCode || rawPageCode.length !== 3 || Number.isNaN(pageCode)) {
     return 100;
   }
 
