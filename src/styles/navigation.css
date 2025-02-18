@@ -19,16 +19,16 @@
   align-items: center;
 }
 
-.navigation-menu-item>span:first-child {
+.navigation-menu-item > span:first-child {
   position: relative;
   flex-grow: 1;
   overflow-x: hidden;
   margin-right: 0.25rem;
 }
 
-.navigation-menu-item>span:first-child::after {
+.navigation-menu-item > span:first-child::after {
   position: absolute;
-  content: '';
+  content: "";
   height: 70%;
   width: 100%;
   border-bottom: 2px dotted;

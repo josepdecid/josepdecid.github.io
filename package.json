@@ -8,6 +8,8 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "lefthook": "^1.10.10",
     "prettier": "3.5.1",
     "stylelint": "^16.14.1",
     "stylelint-config-standard": "^37.0.0",

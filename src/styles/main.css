@@ -1,7 +1,7 @@
-@import url('./reset.css');
-@import url('./theme.css');
-@import url('./effects.css');
-@import url('./navigation.css');
+@import url("./reset.css");
+@import url("./theme.css");
+@import url("./effects.css");
+@import url("./navigation.css");
 
 body {
   background-color: #111827;
@@ -10,22 +10,22 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-family: 'Mode7GX3', monospace;
+  font-family: "Mode7GX3", monospace;
 }
 
 .crt-container {
   position: relative;
   width: 90vmin;
-  aspect-ratio: 4/3;
-  background-image: linear-gradient(to bottom right,
-        var(--transparent-white),
-        var(--transparent-white),
-        transparent);
+  aspect-ratio: 4 / 3;
+  background-image: linear-gradient(
+    to bottom right,
+    var(--transparent-white),
+    var(--transparent-white),
+    transparent
+  );
   border-radius: 1.5rem;
   padding: 1.5rem;
-  box-shadow:
-    0 0 0 10px #1a1a1a,
-    inset 0 0 100px rgb(0 0 0 / 50%);
+  box-shadow: 0 0 0 10px #1a1a1a, inset 0 0 100px rgb(0 0 0 / 50%);
 }
 
 .screen {
