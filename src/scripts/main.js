@@ -1,5 +1,7 @@
-import { setupPageContent } from "./page-content.js";
-import { listenPageInput } from "./page-input.js";
+import { initPageInput } from "./page-input.js";
+import { initPageNavigation } from "./page-navigation.js";
+import { initPageUtils } from "./page-utils.js";
 
-setupPageContent();
-listenPageInput();
+initPageNavigation();
+initPageUtils();
+initPageInput();

@@ -3,7 +3,7 @@ import { navigateToPage } from "./page-navigation.js";
 let currentInput = "";
 const pageInputElement = document.getElementById("page-input");
 
-export function listenPageInput() {
+export function initPageInput() {
   document.addEventListener("keydown", (e) => {
     if (e.key >= "0" && e.key <= "9") {
       currentInput += e.key;
@@ -11,6 +11,8 @@ export function listenPageInput() {
     }
   });
 }
+
+// #region Private helper functions
 
 function _getPageInputText() {
   switch (currentInput.length) {
@@ -32,3 +34,5 @@ function _updatePageDisplay() {
     currentInput = "";
   }
 }
+
+// #endregion

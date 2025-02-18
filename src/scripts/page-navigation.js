@@ -1,29 +1,47 @@
-export function getCurrentPageNumber() {
-  const searchParams = new URLSearchParams(window.location.search);
-  const rawPageNumber = searchParams.get("p");
-  const pageNumber = Number.parseInt(rawPageNumber);
+const pageInputElement = document.getElementById("page-input");
+const currentPageElement = document.getElementById("current-page");
+const pageContentElement = document.getElementById("page-content");
 
-  if (
-    !rawPageNumber ||
-    rawPageNumber.length !== 3 ||
-    Number.isNaN(pageNumber)
-  ) {
+export function initPageNavigation() {
+  const pageCode = _getCurrentPageCode();
+  _replacePageContent(pageCode);
+}
+
+export function navigateToPage(pageCode) {
+  history.pushState({ pageCode }, "", `?p=${pageCode}`);
+  _replacePageContent(pageCode);
+}
+
+// #region Private helper functions
+
+function _getCurrentPageCode() {
+  const searchParams = new URLSearchParams(window.location.search);
+  const rawPageCode = searchParams.get("p");
+  const pageCode = rawPageCode.toUpperCase();
+
+  if (!rawPageCode || rawPageCode.length !== 3 || pageCode.length !== 3) {
     return 100;
   }
 
-  return pageNumber;
+  return pageCode;
 }
 
-export async function getPageContent(pageNumber) {
-  const res = await fetch(`/pages/${pageNumber}.html`);
+async function _getPageContent(pageCode) {
+  const res = await fetch(`/pages/${pageCode}.html`);
   const contentText = await res.text();
   if (contentText.toLowerCase().startsWith("<!doctype html>")) {
-    return getPageContent("_404");
+    return _getPageContent("_404");
   }
 
   return contentText;
 }
 
-export function navigateToPage(pageNumber) {
-  window.location.href = `?p=${pageNumber}`;
+async function _replacePageContent(pageCode) {
+  const pageContent = await _getPageContent(pageCode);
+
+  currentPageElement.textContent = pageCode;
+  pageInputElement.textContent = `P${pageCode}`;
+  pageContentElement.innerHTML = pageContent;
 }
+
+// #endregion
