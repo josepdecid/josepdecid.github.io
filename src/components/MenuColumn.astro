@@ -1,0 +1,27 @@
+---
+import type { Color } from "../data/colors";
+import type { MenuEntry } from "../data/menu";
+import MenuItem from "./MenuItem.astro";
+
+interface Props {
+  entries: MenuEntry[];
+  background: Color;
+  foreground: Color;
+  /** Full-width single-row bar between the menu sections. */
+  bar?: boolean;
+}
+
+const { entries, background, foreground, bar = false } = Astro.props;
+---
+
+<div
+  class:list={[
+    "navigation-menu-column",
+    `bg-${background}`,
+    `text-${foreground}`,
+    { "menu-bar": bar },
+  ]}
+>
+  {entries.map((entry) => <MenuItem {...entry} />)}
+  <slot />
+</div>

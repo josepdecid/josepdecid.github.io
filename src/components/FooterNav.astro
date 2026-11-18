@@ -1,0 +1,13 @@
+---
+import { fastext, pageHref } from "../data/menu";
+---
+
+<nav class="footer-nav" aria-label="Sections">
+  {
+    fastext.map(({ label, color, code }) => (
+      <a class={`text-${color}`} href={pageHref(code)}>
+        {label}
+      </a>
+    ))
+  }
+</nav>

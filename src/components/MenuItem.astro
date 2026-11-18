@@ -1,0 +1,12 @@
+---
+import { type MenuEntry, pageHref } from "../data/menu";
+
+type Props = MenuEntry;
+
+const { code, label } = Astro.props;
+---
+
+<a class="navigation-menu-item" href={pageHref(code)}>
+  <span>{label}</span>
+  <span>{code}</span>
+</a>

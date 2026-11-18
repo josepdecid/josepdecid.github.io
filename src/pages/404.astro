@@ -1,0 +1,22 @@
+---
+import FooterNav from "../components/FooterNav.astro";
+import MenuColumn from "../components/MenuColumn.astro";
+import TitleBar from "../components/TitleBar.astro";
+import { home } from "../data/menu";
+import Teletext from "../layouts/Teletext.astro";
+---
+
+<Teletext title="PAGE NOT FOUND">
+  <TitleBar title="PAGE NOT FOUND" background="red" />
+
+  <div class="navigation-menu-column menu-bar bg-yellow text-black">
+    <p>
+      Did you see this page number somewhere in the menu? Then its content is
+      (maybe) coming soon... Otherwise it's just a 404 :)
+    </p>
+  </div>
+
+  <MenuColumn entries={[home]} background="cyan" foreground="blue" />
+
+  <FooterNav />
+</Teletext>

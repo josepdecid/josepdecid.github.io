@@ -1,0 +1,34 @@
+---
+import { getCollection, render } from "astro:content";
+import FooterNav from "../../../components/FooterNav.astro";
+import TitleBar from "../../../components/TitleBar.astro";
+import { PAGE_CODE } from "../../../data/menu";
+import Teletext from "../../../layouts/Teletext.astro";
+
+export async function getStaticPaths() {
+  const pages = await getCollection("pages");
+
+  return pages.map((page) => {
+    if (!PAGE_CODE.test(page.id) || page.id === "100") {
+      throw new Error(
+        `src/content/pages/${page.id}.md: file name must be a 3-digit page code other than 100`,
+      );
+    }
+    return { params: { code: page.id }, props: { page } };
+  });
+}
+
+const { page } = Astro.props;
+const { title, description, background, foreground } = page.data;
+const { Content } = await render(page);
+---
+
+<Teletext code={page.id} title={title} description={description}>
+  <TitleBar title={title} background={background} foreground={foreground} />
+
+  <article class="page-body">
+    <Content />
+  </article>
+
+  <FooterNav />
+</Teletext>

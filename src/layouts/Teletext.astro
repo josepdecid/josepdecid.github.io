@@ -1,0 +1,79 @@
+---
+import { ClientRouter } from "astro:transitions";
+import { version } from "../../package.json";
+import "../styles/main.css";
+
+interface Props {
+  /** Page code shown in the header. Omitted on the 404 page, where it's read from the URL. */
+  code?: string;
+  title?: string;
+  description?: string;
+}
+
+const SITE_NAME = "Josep de Cid";
+const {
+  code,
+  title,
+  description = "Josep de Cid's personal website",
+} = Astro.props;
+
+const pageTitle = title ? `${title} · ${SITE_NAME}` : SITE_NAME;
+const canonical = code ? new URL(Astro.url.pathname, Astro.site) : undefined;
+---
+
+<!doctype html>
+<html lang="en" transition:animate="none">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    {canonical && <link rel="canonical" href={canonical} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE_NAME} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    {canonical && <meta property="og:url" content={canonical} />}
+    <meta name="twitter:card" content="summary" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="preload" href="/fonts/mode7gx3.woff2" as="font" type="font/woff2" crossorigin />
+
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-NGZKGVPR58"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-NGZKGVPR58");
+    </script>
+
+    <ClientRouter fallback="swap" />
+  </head>
+  <body>
+    <div class="crt-container">
+      <div class="screen">
+        <div class="screen-content">
+          <header class="header-bar text-white bg-black" transition:persist="header-bar">
+            <span>
+              <span id="page-input">P{code ?? "---"}</span>
+              <span id="current-page">{code ?? "---"}</span>
+              <span>v{version}</span>
+            </span>
+            <span id="time"></span>
+          </header>
+
+          <main id="page-content" data-page={code}>
+            <slot />
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      import "../scripts/keypad";
+      import "../scripts/clock";
+    </script>
+  </body>
+</html>

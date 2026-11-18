@@ -1,0 +1,15 @@
+---
+import type { Color } from "../data/colors";
+
+interface Props {
+  title: string;
+  background?: Color;
+  foreground?: Color;
+}
+
+const { title, background = "blue", foreground = "white" } = Astro.props;
+---
+
+<div class:list={["title-bar", `bg-${background}`, `text-${foreground}`]}>
+  <h1 class="title-text">{title}</h1>
+</div>
